@@ -53,7 +53,7 @@ case $direction in
         ;;
     d|down)
         int_ws=$(($current_ws - 3))
-        if [[ $int_ws -lt 0 ]]; then
+        if [[ $int_ws -lt 1 ]]; then
             int_ws=$(($int_ws + 9))
         fi
         ;;
