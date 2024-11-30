@@ -1,0 +1,53 @@
+# Read `man 5 tofi` for a complete reference.
+
+#
+### Font
+
+	font = "monospace"
+	font-size = 18
+	hint-font = false
+
+#
+### Text cursor theme
+
+	text-cursor-style = bar
+	text-cursor-corner-radius = 0
+
+#
+### Text layout
+
+	prompt-text = "run > "
+	num-results = 0
+	result-spacing = -8
+
+#
+### Window theming
+
+	width = 40%%
+	height = 30%
+    background-color = #000D
+	outline-width = 0
+	border-width = 4
+	border-color = #882222
+	clip-to-padding = true
+	scale = true
+
+#
+### Window positioning
+
+	anchor = top
+	exclusive-zone = -1
+
+#
+### Behaviour
+
+	hide-cursor = false
+	text-cursor = false
+	history = true
+	matching-algorithm = normal
+	require-match = true
+	auto-accept-single = false
+	hide-input = false
+	hidden-character = "*"
+	terminal = alacritty
+	ascii-input = false
