@@ -14,14 +14,14 @@ set $right l
 set $term alacritty
 set $menu tofi-run | xargs swaymsg exec --
 set $launcher yofi
-exec_always --no-startup-id workstyle &> /tmp/workstyle.log
+#exec_always --no-startup-id workstyle &> /tmp/workstyle.log
 bar swaybar_command waybar
 exec mako
 
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
+    timeout 300 'swaylock -f' \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c 000000'
+    before-sleep 'swaylock -f'
 
 set $wsgrid exec --no-startup-id  ~/.config/sway/wsgrid.sh
 
@@ -36,10 +36,9 @@ show_marks yes
 tiling_drag enable
 title_align left
 
+font pango:"LiterationSans Nerd Font" 9
+
 ### Key bindings
-#
-# Basics:
-#
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -208,6 +207,6 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym Print exec flameshot
 
 include anosway/*
