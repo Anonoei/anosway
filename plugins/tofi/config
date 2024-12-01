@@ -25,7 +25,7 @@
 
 	width = 40%%
 	height = 30%
-    background-color = #000D
+        background-color = #000D
 	outline-width = 0
 	border-width = 4
 	border-color = #882222
@@ -44,7 +44,6 @@
 	hide-cursor = false
 	text-cursor = false
 	history = true
-	matching-algorithm = normal
 	require-match = true
 	auto-accept-single = false
 	hide-input = false
