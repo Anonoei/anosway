@@ -1,0 +1,85 @@
+#!/bin/bash
+
+function _extra_anosway_help {
+    echo "Usage:  anonoei/anosway COMMAND"
+    echo ""
+    echo "Helper for AnoSWAY"
+    echo ""
+    echo "Commands:"
+    local ash_arg=(
+        "h|help;show_this_message"
+        "i|install;install_AnoSWAY"
+        "U|uninstall;uninstall_AnoSWAY"
+        "u|update;update_AnoSWAY"
+        "l|link;link_AnoSWAY_plugins"
+        )
+    _ash_fmt_help_items "${ash_arg[@]}"
+    echo ""
+}
+
+function _extra_anosway_install {
+    $SHELL <(curl -sS https://raw.githubusercontent.com/anonoei/anosway/main/install.sh) $*
+}
+
+function _extra_anosway_uninstall {
+    echo "Uninstalling..."
+    rm -rf "${HOME}/.config/tmux"
+    echo "AnoSWAY has been uninstalled!"
+}
+
+function _extra_anosway_update {
+    old_path=$PWD
+    cd ${HOME}/.config/tmux
+    if [[ ! -z $(git fetch --dry-run) ]]; then
+        git pull
+    fi
+
+    cd $old_path
+}
+
+function _extra_anosway_link {
+    prev_dir=$PWD
+    cd $HOME/.config/sway
+    cd plugins
+    for folder in *; do
+        if [ -d $PWD/$folder ]; then
+            echo -n "Plugin ${folder}..."
+            #echo $folder
+            if [[ -L $HOME/.config/$folder && -d $HOME/.config/$folder ]]; then
+                echo -n "deleting link..."
+                rm $HOME/.config/$folder
+            fi
+            echo "making link"
+            ln -s $PWD/$folder $HOME/.config/$folder
+        fi
+    done
+    cd $prev_dir
+}
+
+if [[ $# -eq 0 ]]; then
+    _extra_anosway_help
+    return
+fi
+
+ASH_CMD=$1
+shift
+case $ASH_CMD in
+    h|help)
+        _extra_anosway_help $*
+        ;;
+    i|install)
+        _extra_anosway_install $*
+        ;;
+    U|uninstall)
+        _extra_anosway_uninstall $*
+        ;;
+    u|update)
+        _extra_anosway_update $*
+        ;;
+    l|link)
+        _extra_anosway_link $*
+        ;;
+    *)
+        _ash_fmt_help_unk "anosway" $ASH_CMD $*
+        ;;
+esac
