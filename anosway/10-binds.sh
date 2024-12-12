@@ -24,3 +24,6 @@ bindsym $mod+Shift+c reload
 
 ## Take screenshot
 bindsym Print exec $screenshot
+
+# Toggle control center
+bindsym $mod+n exec swaync-client -t -sw

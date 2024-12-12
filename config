@@ -8,7 +8,7 @@ set $mod Mod4
 ### Set up plugins
 set $term alacritty
 set $menu tofi-run | xargs swaymsg exec --
-set $notify mako
+set $notify swaync
 set $screenshot slurp | grim -g - - | wl-copy
 
 bar swaybar_command waybar
